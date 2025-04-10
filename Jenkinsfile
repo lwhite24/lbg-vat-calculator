@@ -13,7 +13,7 @@ pipeline {
             // Install the ReactJS dependencies
             sh "sudo npm install"
         }
-//    }
+    }
 //   stage('Test') {
 //        steps {
           // Run the ReactJS tests
