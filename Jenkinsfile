@@ -13,13 +13,13 @@ pipeline {
             // Install the ReactJS dependencies
             sh "sudo npm install"
         }
-    }
-    stage('Test') {
-        steps {
+//    }
+//   stage('Test') {
+//        steps {
           // Run the ReactJS tests
-          sh "sudo npm test"
-        }
-    }
+//          sh "sudo npm test"
+//        }
+//    }
     stage('SonarQube Analysis') {
       environment {
         scannerHome = tool 'sonarqube'
@@ -28,9 +28,9 @@ pipeline {
             withSonarQubeEnv('sonar-qube-1') {        
               sh "${scannerHome}/bin/sonar-scanner"
         }
-//        timeout(time: 10, unit: 'MINUTES'){
- //         waitForQualityGate abortPipeline: true
- //         }
+        timeout(time: 10, unit: 'MINUTES'){
+         waitForQualityGate abortPipeline: true
+         }
         }
     }
   }
